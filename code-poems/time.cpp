@@ -21,6 +21,6 @@ class WhatYouWouldDo {};
 int main()
 {
     Time<SpentWorryingAboutTheFuture> time;
-    instead<decltype(time)::Spent, WhatYouWouldDo>(x);
+    instead<decltype(time)::Spent, WhatYouWouldDo>(time);
     return 0;
 }
