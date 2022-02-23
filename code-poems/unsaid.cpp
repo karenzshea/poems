@@ -6,17 +6,17 @@ template <typename T, typename enable = void>
 struct is_brave : std::false_type {};
 
 template <typename T>
-struct is_brave<T, decltype(std::declval<T &>().enough(), void())>
+struct is_brave<T, std::void_t<decltype(std::declval<T &>().enough())>>
     : std::true_type {};
 
-template <typename Me, typename You, typename Things>
-typename std::enable_if_t<is_brave<Me>{}> say(Me &me, You &you, Things &toSay) {
+template <typename T, typename U, typename V>
+typename std::enable_if_t<is_brave<T>{}> tell(T &, U &, V &) {
 }
 
 struct You {};
 
 struct Me {
-  // bool enough() {}
+   //bool enough() { return true; }
 };
 
 int main() {
@@ -27,5 +27,5 @@ int main() {
 
   std::cin >> thoughts;
 
-  say<Me, You, std::string>(me, you, thoughts);
+  tell<Me, You, std::string>(me, you, thoughts);
 }
